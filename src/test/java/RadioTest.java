@@ -35,6 +35,31 @@ public class RadioTest {
         Assertions.assertEquals(0, number.getNextStation());
         Assertions.assertEquals(0, number.getPrevStation());
     }
+
+//=====================================================================================================================
+
+    @Test
+    public void setMaxAndMinNextAndPrevNumberStation() {
+        Radio number = new Radio(9, 0);
+        Assertions.assertEquals(10, number.getAmountStation());
+        Assertions.assertEquals(0, number.getMinNumberStation());
+        Assertions.assertEquals(9, number.getMaxNumberStation());
+        Assertions.assertEquals(0, number.getNumberStation());
+        Assertions.assertEquals(0, number.getNextStation());
+        Assertions.assertEquals(9, number.getPrevStation());
+    }
+
+    @Test
+    public void setNextAndPrevNumberStation() {
+        Radio number = new Radio(8, 1);
+        Assertions.assertEquals(10, number.getAmountStation());
+        Assertions.assertEquals(0, number.getMinNumberStation());
+        Assertions.assertEquals(9, number.getMaxNumberStation());
+        Assertions.assertEquals(0, number.getNumberStation());
+        Assertions.assertEquals(9, number.getNextStation());
+        Assertions.assertEquals(0, number.getPrevStation());
+    }
+
 //=====================================================================================================================
 
     @Test

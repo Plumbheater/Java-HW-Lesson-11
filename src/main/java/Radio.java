@@ -31,6 +31,20 @@ public class Radio {
             this.prevStation = prevStation - 1;
         }
     }
+    public Radio(int nextStation, int prevStation) {
+
+        if (nextStation >= this.maxNumberStation) {
+            this.nextStation = 0;
+        } else {
+            this.nextStation = nextStation + 1;
+        }
+        if (prevStation <= this.minNumberStation) {
+            this.prevStation = this.maxNumberStation;
+        } else {
+            this.prevStation = prevStation - 1;
+        }
+    }
+
 
     public Radio(int maxVolume, int minVolume, int plusVolume, int minusVolume) {
         this.maxVolume = maxVolume;
