@@ -31,6 +31,7 @@ public class Radio {
             this.prevStation = prevStation - 1;
         }
     }
+
     public Radio(int nextStation, int prevStation) {
 
         if (nextStation >= this.maxNumberStation) {
@@ -59,6 +60,37 @@ public class Radio {
             this.minusVolume = this.minVolume;
         } else {
             this.minusVolume = minusVolume - 1;
+        }
+
+    }
+
+    public Radio() {
+
+        if (this.nextStation >= this.maxNumberStation) {
+            this.nextStation = this.minNumberStation;
+
+        }
+        if (this.prevStation <= this.minNumberStation) {
+            this.prevStation = this.maxNumberStation;
+        }
+    }
+
+    public Radio(int amountStation) {
+        this.amountStation = amountStation;
+        if (this.maxNumberStation >= amountStation) {
+            this.maxNumberStation = amountStation - 1;
+        }
+
+        if (this.maxNumberStation < this.minNumberStation) {
+            this.maxNumberStation = this.minNumberStation;
+        }
+        if (this.nextStation >= this.maxNumberStation) {
+            this.nextStation = this.minNumberStation;
+
+        }
+        if (this.prevStation <= this.minNumberStation) {
+            this.prevStation = this.maxNumberStation;
+
         }
 
     }
