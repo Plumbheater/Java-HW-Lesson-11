@@ -1,51 +1,18 @@
 public class Radio {
-    private int amountStation = 10;
+
+
     private int maxNumberStation = 9;
     private int minNumberStation = 0;
-    private int numberStation = minNumberStation;
-    private int nextStation = numberStation + 1;
-    private int prevStation = numberStation - 1;
+    private int amountOfStations = 10;
+    private int currentStation = minNumberStation;
+    private int nextStation = 1;
+    private int prevStation = 9;
 
     private int maxVolume = 100;
     private int minVolume = 0;
     private int setVolume = minVolume;
     private int plusVolume = setVolume + 1;
     private int minusVolume = setVolume - 1;
-
-    public Radio(int amountStation, int minNumberStation, int maxNumberStation, int nextStation, int prevStation) {
-        this.amountStation = amountStation;
-        this.minNumberStation = minNumberStation;
-        this.maxNumberStation = maxNumberStation;
-        if (maxNumberStation >= amountStation) {
-            this.maxNumberStation = this.amountStation - 1;
-        }
-        this.numberStation = minNumberStation;
-        if (nextStation >= this.maxNumberStation) {
-            this.nextStation = 0;
-        } else {
-            this.nextStation = nextStation + 1;
-        }
-        if (prevStation <= minNumberStation) {
-            this.prevStation = this.maxNumberStation;
-        } else {
-            this.prevStation = prevStation - 1;
-        }
-    }
-
-    public Radio(int nextStation, int prevStation) {
-
-        if (nextStation >= this.maxNumberStation) {
-            this.nextStation = 0;
-        } else {
-            this.nextStation = nextStation + 1;
-        }
-        if (prevStation <= this.minNumberStation) {
-            this.prevStation = this.maxNumberStation;
-        } else {
-            this.prevStation = prevStation - 1;
-        }
-    }
-
 
     public Radio(int maxVolume, int minVolume, int plusVolume, int minusVolume) {
         this.maxVolume = maxVolume;
@@ -66,41 +33,53 @@ public class Radio {
 
     public Radio() {
 
-        if (this.nextStation >= this.maxNumberStation) {
+    }
+
+    public Radio(int amountOfStations) {
+        this.amountOfStations = amountOfStations;
+        if (this.amountOfStations < 1) {
+            amountOfStations = 1;
+        }
+        this.maxNumberStation = amountOfStations - 1;
+        this.minNumberStation = amountOfStations - this.maxNumberStation - 1;
+
+    }
+
+    public void setCurrentStation(int currentStation) {
+        this.currentStation = currentStation;
+        if (currentStation >= this.maxNumberStation) {
+            this.currentStation = this.maxNumberStation;
+        }
+        if (currentStation <= this.minNumberStation) {
+            this.currentStation = this.minNumberStation;
+        }
+        if (currentStation >= maxNumberStation) {
+            nextStation = minNumberStation;
+
+        }
+        if (currentStation <= minNumberStation) {
+            prevStation = maxNumberStation;
+
+        }
+    }
+
+
+    public int getAmountOfStations() {
+        if (this.currentStation >= this.maxNumberStation) {
             this.nextStation = this.minNumberStation;
-
+        } else {
+            this.nextStation = this.currentStation + 1;
         }
-        if (this.prevStation <= this.minNumberStation) {
+        if (this.currentStation <= this.minNumberStation) {
             this.prevStation = this.maxNumberStation;
+        } else {
+            this.prevStation = this.currentStation - 1;
         }
+        return amountOfStations;
     }
 
-    public Radio(int amountStation) {
-        this.amountStation = amountStation;
-        if (this.maxNumberStation >= amountStation) {
-            this.maxNumberStation = amountStation - 1;
-        }
-
-        if (this.maxNumberStation < this.minNumberStation) {
-            this.maxNumberStation = this.minNumberStation;
-        }
-        if (this.nextStation >= this.maxNumberStation) {
-            this.nextStation = this.minNumberStation;
-
-        }
-        if (this.prevStation <= this.minNumberStation) {
-            this.prevStation = this.maxNumberStation;
-
-        }
-
-    }
-
-    public int getAmountStation() {
-        return amountStation;
-    }
-
-    public int getNumberStation() {
-        return numberStation;
+    public int getCurrentStation() {
+        return currentStation;
     }
 
     public int getMaxNumberStation() {
@@ -112,10 +91,14 @@ public class Radio {
     }
 
     public int getNextStation() {
+        this.nextStation = this.getCurrentStation() +1;
+        this.setCurrentStation(nextStation);
         return nextStation;
     }
 
     public int getPrevStation() {
+        this.prevStation = this.getCurrentStation() -1;
+        this.setCurrentStation(prevStation);
         return prevStation;
     }
 

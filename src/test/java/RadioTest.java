@@ -4,65 +4,6 @@ import org.junit.jupiter.api.Test;
 public class RadioTest {
 
     @Test
-    public void setMaxNumberStation() {
-        Radio number = new Radio(10, 0, 9, 9, 0);
-        Assertions.assertEquals(10, number.getAmountStation());
-        Assertions.assertEquals(0, number.getMinNumberStation());
-        Assertions.assertEquals(9, number.getMaxNumberStation());
-        Assertions.assertEquals(0, number.getNumberStation());
-        Assertions.assertEquals(0, number.getNextStation());
-        Assertions.assertEquals(9, number.getPrevStation());
-    }
-
-    @Test
-    public void setHighMaxNumberStation() {
-        Radio number = new Radio(10, 0, 10, 8, 1);
-        Assertions.assertEquals(10, number.getAmountStation());
-        Assertions.assertEquals(0, number.getMinNumberStation());
-        Assertions.assertEquals(9, number.getMaxNumberStation());
-        Assertions.assertEquals(0, number.getNumberStation());
-        Assertions.assertEquals(9, number.getNextStation());
-        Assertions.assertEquals(0, number.getPrevStation());
-    }
-
-    @Test
-    public void setMinNumberStation() {
-        Radio number = new Radio(1, 0, 0, 0, 0);
-        Assertions.assertEquals(1, number.getAmountStation());
-        Assertions.assertEquals(0, number.getMinNumberStation());
-        Assertions.assertEquals(0, number.getMaxNumberStation());
-        Assertions.assertEquals(0, number.getNumberStation());
-        Assertions.assertEquals(0, number.getNextStation());
-        Assertions.assertEquals(0, number.getPrevStation());
-    }
-
-//=====================================================================================================================
-
-    @Test
-    public void setMaxAndMinNextAndPrevNumberStation() {
-        Radio number = new Radio(9, 0);
-        Assertions.assertEquals(10, number.getAmountStation());
-        Assertions.assertEquals(0, number.getMinNumberStation());
-        Assertions.assertEquals(9, number.getMaxNumberStation());
-        Assertions.assertEquals(0, number.getNumberStation());
-        Assertions.assertEquals(0, number.getNextStation());
-        Assertions.assertEquals(9, number.getPrevStation());
-    }
-
-    @Test
-    public void setNextAndPrevNumberStation() {
-        Radio number = new Radio(8, 1);
-        Assertions.assertEquals(10, number.getAmountStation());
-        Assertions.assertEquals(0, number.getMinNumberStation());
-        Assertions.assertEquals(9, number.getMaxNumberStation());
-        Assertions.assertEquals(0, number.getNumberStation());
-        Assertions.assertEquals(9, number.getNextStation());
-        Assertions.assertEquals(0, number.getPrevStation());
-    }
-
-//=====================================================================================================================
-
-    @Test
     public void setVolume() {
         Radio volume = new Radio(100, 1, 99, 2);
         Assertions.assertEquals(1, volume.getSetVolume());
@@ -98,21 +39,11 @@ public class RadioTest {
     @Test
     public void setStandartSettingsRadioStation() {
         Radio number = new Radio();
-        Assertions.assertEquals(10, number.getAmountStation());
-        Assertions.assertEquals(0, number.getMinNumberStation());
-        Assertions.assertEquals(9, number.getMaxNumberStation());
-        Assertions.assertEquals(0, number.getNumberStation());
-        Assertions.assertEquals(1, number.getNextStation());
-        Assertions.assertEquals(9, number.getPrevStation());
-    }
 
-    @Test
-    public void setAmountStation() {
-        Radio number = new Radio(10);
-        Assertions.assertEquals(10, number.getAmountStation());
+        Assertions.assertEquals(10, number.getAmountOfStations());
         Assertions.assertEquals(0, number.getMinNumberStation());
         Assertions.assertEquals(9, number.getMaxNumberStation());
-        Assertions.assertEquals(0, number.getNumberStation());
+        Assertions.assertEquals(0, number.getCurrentStation());
         Assertions.assertEquals(1, number.getNextStation());
         Assertions.assertEquals(9, number.getPrevStation());
     }
@@ -120,11 +51,24 @@ public class RadioTest {
     @Test
     public void setLowAmountStation() {
         Radio number = new Radio(0);
-        Assertions.assertEquals(0, number.getAmountStation());
+        Assertions.assertEquals(0, number.getAmountOfStations());
         Assertions.assertEquals(0, number.getMinNumberStation());
         Assertions.assertEquals(0, number.getMaxNumberStation());
-        Assertions.assertEquals(0, number.getNumberStation());
+        Assertions.assertEquals(0, number.getCurrentStation());
         Assertions.assertEquals(0, number.getNextStation());
         Assertions.assertEquals(0, number.getPrevStation());
+    }
+
+    @Test
+    public void setAmountStationAndChangeCurrentStation() {
+        Radio number = new Radio(10);
+        number.setCurrentStation(5);
+
+        Assertions.assertEquals(10, number.getAmountOfStations());
+        Assertions.assertEquals(0, number.getMinNumberStation());
+        Assertions.assertEquals(9, number.getMaxNumberStation());
+        Assertions.assertEquals(5, number.getCurrentStation());
+        Assertions.assertEquals(6, number.getNextStation());
+        Assertions.assertEquals(5, number.getPrevStation());
     }
 }
